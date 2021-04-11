@@ -1,5 +1,7 @@
 package models
 
+import com.sun.org.apache.bcel.internal.classfile.ExceptionTable
+
 
 class AddressBook (private val contactList: MutableList<Contact> = mutableListOf()){
     fun getContacts(): List<Contact> {
@@ -30,5 +32,14 @@ class AddressBook (private val contactList: MutableList<Contact> = mutableListOf
 
     fun searchContacts(query: String): List<Contact> {
         return contactList.filter {c -> (c.firstName.contains(query) || c.lastName.contains(query))  }
+    }
+
+    fun updateContact(contact: Contact) {
+        val contactIndex = contactList.indexOfFirst { c -> c.firstName == contact.firstName && c.lastName == contact.lastName }
+        if(contactIndex == -1) {
+            throw Exception("Element not found")
+        }
+        contactList.removeAt(contactIndex)
+        contactList.add(contact)
     }
 }

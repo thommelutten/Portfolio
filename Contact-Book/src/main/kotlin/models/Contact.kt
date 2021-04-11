@@ -1,18 +1,50 @@
 package models
 
-class Contact (val firstName: String, val lastName: String, val email: String = "", val phone: String = "") {
+class Contact (firstName: String, lastName: String, email: String = "", phone: String = "") {
     init {
         require(
+            firstName.isNotEmpty() &&
             (firstName.filter { !it.isLetter() }).isEmpty()
-        ) { "Firstname must only contain letters"}
+        ) { "First name can not be empty and must only contain letters"}
         require(
+            lastName.isNotEmpty() &&
             (lastName.filter { !it.isLetter() }).isEmpty()
-        ) { "Lastname must only contain letters"}
+        ) { "Last name can not be empty and must only contain letters"}
         require(
-            email.contains('@')
+             if(email.isNotEmpty()) {email.contains('@')} else {true}
         ) { "Email must contain an @"}
         require(
             (phone.filter { !it.isDigit() } ).isEmpty()
         ) { "Phone number must only contain digits"}
     }
+    var firstName: String = firstName
+        set(name) {
+            require(
+                (name.filter { !it.isLetter() }).isEmpty()
+            ) { "First name must only contain letters"}
+            field = name
+        }
+    var lastName: String = lastName
+        set(name) {
+            require(
+                (name.filter { !it.isLetter() }).isEmpty()
+            ) { "First name must only contain letters"}
+            field = name
+        }
+
+    var email: String = email
+        set(e) {
+            require(
+                email.isNotEmpty() && e.contains('@')
+            ) { "Email must contain an @"}
+            field = e
+        }
+
+    var phone: String = phone
+        set(p) {
+            require(
+                (p.filter { !it.isDigit() } ).isEmpty()
+            ) { "Phone number must only contain digits"}
+            field = p
+        }
 }

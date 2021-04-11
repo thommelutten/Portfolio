@@ -97,6 +97,25 @@ class AddressBookTest {
         Assertions.assertEquals(filteredContacts, foundContacts)
     }
 
+    @Test
+    fun updateContactFromAddressBook() {
+        val addressBook = AddressBook()
+
+        val contacts = createListOfContacts()
+        addressBook.addContacts(contacts)
+
+        val foundContact = addressBook.findContact("Thor")
+
+        Assertions.assertEquals("thor@asgard.com", foundContact.email)
+
+        foundContact.email = "thor@updated-asgard.com"
+        addressBook.updateContact(foundContact)
+
+        val contact = addressBook.findContact("Thor")
+        Assertions.assertEquals("thor@updated-asgard.com", contact.email)
+
+    }
+
     private fun createListOfContacts(): MutableList<Contact> {
         return mutableListOf(
             Contact("Simon", "Says", "test@test.com", "55443322"),
