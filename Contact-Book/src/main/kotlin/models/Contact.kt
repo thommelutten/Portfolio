@@ -1,50 +1,41 @@
 package models
 
+
 class Contact (firstName: String, lastName: String, email: String = "", phone: String = "") {
-    init {
-        require(
-            firstName.isNotEmpty() &&
-            (firstName.filter { !it.isLetter() }).isEmpty()
-        ) { "First name can not be empty and must only contain letters"}
-        require(
-            lastName.isNotEmpty() &&
-            (lastName.filter { !it.isLetter() }).isEmpty()
-        ) { "Last name can not be empty and must only contain letters"}
-        require(
-             if(email.isNotEmpty()) {email.contains('@')} else {true}
-        ) { "Email must contain an @"}
-        require(
-            (phone.filter { !it.isDigit() } ).isEmpty()
-        ) { "Phone number must only contain digits"}
-    }
-    var firstName: String = firstName
+    var firstName = firstName
         set(name) {
             require(
-                (name.filter { !it.isLetter() }).isEmpty()
-            ) { "First name must only contain letters"}
+                name.isNotEmpty() &&
+                        (name.filter { !it.isLetter() }).isEmpty()
+            ) { "First name can not be empty and must only contain letters" }
             field = name
         }
-    var lastName: String = lastName
+    var lastName = lastName
         set(name) {
             require(
-                (name.filter { !it.isLetter() }).isEmpty()
-            ) { "First name must only contain letters"}
+                name.isNotEmpty() &&
+                        (name.filter { !it.isLetter() }).isEmpty()
+            ) { "Last name can not be empty and must only contain letters"}
             field = name
         }
-
-    var email: String = email
-        set(e) {
+    var email = email
+        set(email) {
             require(
-                email.isNotEmpty() && e.contains('@')
+                if(email.isNotEmpty()) { email.contains('@') } else { true }
             ) { "Email must contain an @"}
-            field = e
+            field = email
         }
-
-    var phone: String = phone
-        set(p) {
+    var phone = phone
+        set(phone) {
             require(
-                (p.filter { !it.isDigit() } ).isEmpty()
+                (phone.filter { !it.isDigit() } ).isEmpty()
             ) { "Phone number must only contain digits"}
-            field = p
+            field = phone
         }
+    init {
+        this.firstName = firstName
+        this.lastName = lastName
+        this.email = email
+        this.phone = phone
+    }
 }

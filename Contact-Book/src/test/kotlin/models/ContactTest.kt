@@ -77,7 +77,7 @@ class ContactTest {
         val exception = Assertions.assertThrows(IllegalArgumentException::class.java) {
             c.firstName = "S1mon"
         }
-        Assertions.assertEquals("First name must only contain letters", exception.message)
+        Assertions.assertEquals("First name can not be empty and must only contain letters", exception.message)
         Assertions.assertEquals("Simon", c.firstName)
     }
 

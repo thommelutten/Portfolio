@@ -3,22 +3,28 @@ package commands
 import models.AddressBook
 
 class ParseCommand {
-    fun parse(args: Array<String>): Command {
-        if(args.isEmpty()) {
-            throw Exception("No arguments passed")
-        }
-        val command = CommandTypes.valueOf(args[0])
-
-        when(command.name) {
-            "ListCommand" -> {
-                println("Listing contacts")
-                return ListCommand(AddressBook()) // TODO Update to content from file instead
+    companion object {
+        fun parse(args: Array<String>): Command {
+            if (args.isEmpty()) {
+                throw Exception("No arguments passed")
             }
-            else -> throw Exception("Unknown Command")
+            val command = CommandTypes.valueOf(args[0])
+
+            return when (command.name) {
+                "List" -> {
+                    println("Listing contacts")
+                    ListCommand()
+                }
+                "Add" -> {
+                    println("Adding contact")
+                    AddCommand()
+                }
+                else -> throw Exception("Unknown Command")
+            }
         }
     }
 }
 
 enum class CommandTypes() {
-    ListCommand
+    List, Add
 }

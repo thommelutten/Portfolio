@@ -3,7 +3,11 @@ package commands
 import models.AddressBook
 import java.lang.StringBuilder
 
-class ListCommand(override var addressBook: AddressBook) : Command {
+class ListCommand() : Command {
+
+    override lateinit var addressBook: AddressBook
+    override lateinit var args: Array<String>
+
     override fun execute(): String {
         if(addressBook.getContacts().isEmpty()) {
             return "Address Book is Empty"
