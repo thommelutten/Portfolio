@@ -1,6 +1,6 @@
 # Contact-Book
 
-[![Thommelutten](https://circleci.com/github/thommelutten/Portfolio>.svg?style=svg)](https://app.circleci.com/pipelines/github/thommelutten/Portfolio)
+[![CircleCI](https://circleci.com/github/thommelutten/Portfolio>.svg?style=shield)](https://app.circleci.com/pipelines/github/thommelutten/Portfolio)
 
 
 A kotlin based commandline project, used to store contacts with their respective email and phone number.
