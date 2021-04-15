@@ -24,4 +24,10 @@ class ParseCommandTest {
         val command = ParseCommand.parse(arrayOf("Add"))
         Assertions.assertEquals(AddCommand::class.java, command.javaClass)
     }
+
+    @Test
+    fun parseSearchCommandTest() {
+        val command = ParseCommand.parse(arrayOf("Search"))
+        Assertions.assertEquals(SearchCommand::class.java, command.javaClass)
+    }
 }
