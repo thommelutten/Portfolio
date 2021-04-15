@@ -83,7 +83,7 @@ class AddressBookTest {
     }
 
     @Test
-    fun listContactsFromAddressBook() {
+    fun searchContactsFromAddressBook() {
         val addressBook = AddressBook()
 
         val contacts = createListOfContacts()

@@ -3,7 +3,6 @@ package commands
 import models.AddressBook
 
 class AddCommand() : Command {
-
     override lateinit var addressBook: AddressBook
     override lateinit var args: Array<String>
 

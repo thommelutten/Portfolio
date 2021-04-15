@@ -19,6 +19,10 @@ class ParseCommand {
                     println("Adding contact")
                     AddCommand()
                 }
+                "Search" -> {
+                    println("Searching for contact")
+                    SearchCommand()
+                }
                 else -> throw Exception("Unknown Command")
             }
         }
@@ -26,5 +30,5 @@ class ParseCommand {
 }
 
 enum class CommandTypes() {
-    List, Add
+    List, Add, Search
 }

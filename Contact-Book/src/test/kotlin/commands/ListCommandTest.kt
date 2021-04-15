@@ -52,5 +52,4 @@ class ListCommandTest {
             Contact("Odin", "Allfather", "odin@asgard.com", "66554433")
         ))
     }
-
 }
