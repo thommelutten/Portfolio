@@ -1,9 +1,9 @@
 package models
 
-import com.sun.org.apache.bcel.internal.classfile.ExceptionTable
+import com.squareup.moshi.JsonClass
 
-
-class AddressBook (private val contactList: MutableList<Contact> = mutableListOf()){
+@JsonClass(generateAdapter = true)
+data class AddressBook (val contactList: MutableList<Contact> = mutableListOf()){
     fun getContacts(): List<Contact> {
         return contactList
     }

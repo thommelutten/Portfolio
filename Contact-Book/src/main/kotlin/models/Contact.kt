@@ -1,6 +1,8 @@
 package models
 
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 class Contact (firstName: String, lastName: String, email: String = "", phone: String = "") {
     var firstName = firstName
         set(name) {
