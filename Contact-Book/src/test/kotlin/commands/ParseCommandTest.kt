@@ -13,6 +13,14 @@ class ParseCommandTest {
     }
 
     @Test
+    fun parseCommandWithUnknownCommandTest() {
+        val exception = Assertions.assertThrows(Exception::class.java) {
+            ParseCommand.parse(arrayOf("SomeWierdCommand"))
+        }
+        Assertions.assertEquals("Unknown Command", exception.message)
+    }
+
+    @Test
     fun parseListCommandTest() {
         val command = ParseCommand.parse(arrayOf("List"))
         Assertions.assertEquals(ListCommand::class.java, command.javaClass)

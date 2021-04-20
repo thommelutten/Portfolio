@@ -8,7 +8,13 @@ class ParseCommand {
             if (args.isEmpty()) {
                 throw Exception("No arguments passed")
             }
-            val command = CommandTypes.valueOf(args[0])
+
+            val command = try{
+                CommandTypes.valueOf(args[0])
+            } catch (e: Exception) {
+                CommandTypes.Unknown
+            }
+
 
             return when (command.name) {
                 "List" -> {
@@ -30,5 +36,5 @@ class ParseCommand {
 }
 
 enum class CommandTypes() {
-    List, Add, Search, Delete
+    List, Add, Search, Delete, Unknown
 }
