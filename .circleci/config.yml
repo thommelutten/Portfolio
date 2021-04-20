@@ -57,7 +57,7 @@ jobs:
       - run:
           name: Copy Jacoco testreports
           command: |
-            cp "./build/reports/jacoco/jacocoTestReport.xml" ~/test-results
+            cp ".*/build/reports/jacoco/jacocoTestReport.xml" ~/test-results
       - store_test_results:
           path: ~/test-results
       - store_artifacts:
