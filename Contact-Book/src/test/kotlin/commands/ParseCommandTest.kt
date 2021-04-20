@@ -29,4 +29,10 @@ class ParseCommandTest {
         val command = ParseCommand.parse(arrayOf("Search"))
         Assertions.assertEquals(SearchCommand::class.java, command.javaClass)
     }
+
+    @Test
+    fun parseDeleteCommand() {
+        val command = ParseCommand.parse(arrayOf("Delete"))
+        Assertions.assertEquals(DeleteCommand::class.java, command.javaClass)
+    }
 }

@@ -17,7 +17,8 @@ class FileParserTest {
         val adapter: JsonAdapter<AddressBook> = moshi.adapter(AddressBook::class.java).lenient()
         val addressBook = createAddressBookWithContacts()
         val jsonString = adapter.toJson(addressBook)
-        println(jsonString)
+        val correctString = "{\"contactList\":[{\"firstName\":\"Simon\",\"lastName\":\"Says\",\"email\":\"test@test.com\",\"phone\":\"55443322\"},{\"firstName\":\"Thor\",\"lastName\":\"Odinsson\",\"email\":\"thor@asgard.com\",\"phone\":\"11223344\"},{\"firstName\":\"Odin\",\"lastName\":\"Allfather\",\"email\":\"odin@asgard.com\",\"phone\":\"66554433\"}]}"
+        Assertions.assertEquals(correctString, jsonString)
     }
 
     @Test

@@ -12,16 +12,16 @@ class ParseCommand {
 
             return when (command.name) {
                 "List" -> {
-                    println("Listing contacts")
                     ListCommand()
                 }
                 "Add" -> {
-                    println("Adding contact")
                     AddCommand()
                 }
                 "Search" -> {
-                    println("Searching for contact")
                     SearchCommand()
+                }
+                "Delete" -> {
+                    DeleteCommand()
                 }
                 else -> throw Exception("Unknown Command")
             }
@@ -30,5 +30,5 @@ class ParseCommand {
 }
 
 enum class CommandTypes() {
-    List, Add, Search
+    List, Add, Search, Delete
 }
