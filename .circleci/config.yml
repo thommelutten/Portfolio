@@ -63,3 +63,5 @@ jobs:
           path: ~/test-results
       - store_artifacts:
           path: ~/test-results
+      - codecov/upload:
+          file: ~/test-results/jacoco/jacocoTestReport.xml
