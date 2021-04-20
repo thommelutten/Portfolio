@@ -47,7 +47,14 @@ class FileParserTest {
         val resource = object {}.javaClass.getResource("/AddressBookExample.json")
         val addressBook = FileParser.loadAddressBook(resource.path)
 
-        Assertions.assertEquals("Simon", addressBook.getContacts().get(0).firstName)
+        Assertions.assertEquals("Simon", addressBook.getContacts()[0].firstName)
+    }
+
+    @Test
+    fun returnEmptyAddressBookWhenNoFileFound() {
+        val addressBook = FileParser.loadAddressBook("")
+
+        Assertions.assertEquals(0, addressBook.getContacts().size)
     }
 
     private fun createAddressBookWithContacts(): AddressBook {

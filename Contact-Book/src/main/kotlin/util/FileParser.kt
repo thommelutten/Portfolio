@@ -5,6 +5,7 @@ import com.squareup.moshi.Moshi
 import com.sun.jndi.cosnaming.IiopUrl
 import models.AddressBook
 import java.io.File
+import java.io.FileNotFoundException
 
 class FileParser {
 
@@ -12,14 +13,17 @@ class FileParser {
 
     companion object {
         fun loadAddressBook(path: String): AddressBook {
-
-            val fileContent = File(path).readText()
-            val moshi: Moshi = Moshi.Builder()
-                .build()
-            val adapter: JsonAdapter<AddressBook> = moshi.adapter(AddressBook::class.java).lenient()
-            val addressBook = adapter.fromJson(fileContent)
-            if (addressBook != null) return addressBook
-            return AddressBook()
+            try {
+                val fileContent = File(path).readText()
+                val moshi: Moshi = Moshi.Builder()
+                    .build()
+                val adapter: JsonAdapter<AddressBook> = moshi.adapter(AddressBook::class.java).lenient()
+                val addressBook = adapter.fromJson(fileContent)
+                if (addressBook != null) return addressBook
+                return AddressBook()
+            } catch (e: FileNotFoundException) {
+                return AddressBook()
+            }
         }
     }
 
