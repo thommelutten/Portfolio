@@ -20,10 +20,10 @@ class FileParser {
                 val adapter: JsonAdapter<AddressBook> = moshi.adapter(AddressBook::class.java).lenient()
                 val addressBook = adapter.fromJson(fileContent)
                 if (addressBook != null) return addressBook
-                return AddressBook()
-            } catch (e: FileNotFoundException) {
-                return AddressBook()
+            } catch (e: Exception) {
+
             }
+            return AddressBook()
         }
     }
 

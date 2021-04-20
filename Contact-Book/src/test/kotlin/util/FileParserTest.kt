@@ -58,6 +58,14 @@ class FileParserTest {
         Assertions.assertEquals(0, addressBook.getContacts().size)
     }
 
+    @Test
+    fun returnEmptyAddressBookWhenFileIsEmpty() {
+        val resource = object {}.javaClass.getResource("/EmptyAddressBookExample.json")
+        val addressBook = FileParser.loadAddressBook(resource.path)
+
+        Assertions.assertEquals(0, addressBook.getContacts().size)
+    }
+
     private fun createAddressBookWithContacts(): AddressBook {
         return AddressBook(mutableListOf(
             Contact("Simon", "Says", "test@test.com", "55443322"),
