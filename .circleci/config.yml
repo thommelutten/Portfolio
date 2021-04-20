@@ -2,9 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2.1
-orbs:
-  codecov: codecov/codecov@1.0.2
+version: 2
 jobs:
   build:
     docker:
@@ -63,5 +61,6 @@ jobs:
           path: ~/test-results
       - store_artifacts:
           path: ~/test-results
-      - codecov/upload:
-          file: ~/test-results/jacoco/jacocoTestReport.xml
+      - run:
+          command: |
+            bash <(curl -s https://codecov.io/bash) -t e73a8de9-e6cb-4bf4-b60f-c38cf4fed06f
