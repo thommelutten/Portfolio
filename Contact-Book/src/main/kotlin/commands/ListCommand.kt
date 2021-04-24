@@ -5,7 +5,7 @@ import java.lang.StringBuilder
 
 class ListCommand() : Command {
     override lateinit var addressBook: AddressBook
-    override lateinit var args: Array<String>
+    override lateinit var args: Map<String,List<String>>
 
     override fun execute(): String {
         if(addressBook.getContacts().isEmpty()) {

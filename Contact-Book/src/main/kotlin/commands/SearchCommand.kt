@@ -5,16 +5,17 @@ import java.lang.StringBuilder
 
 class SearchCommand() : Command {
     override lateinit var addressBook: AddressBook
-    override lateinit var args: Array<String>
+    override lateinit var args: Map<String,List<String>>
 
     override fun execute(): String {
-        if(args.size < 2) {
+        val contactValues = args.entries.first().value
+        if(contactValues.size < 2) {
             return "Wrong arguments passed. Format: Search Name"
         }
 
         val stringBuilder = StringBuilder()
 
-        addressBook.searchContacts(args[1]).forEach {
+        addressBook.searchContacts(contactValues[1]).forEach {
             stringBuilder.appendLine(it.firstName + " " + it.lastName + "\t\t" + it.email + "\t\t" + it.phone)
         }
 

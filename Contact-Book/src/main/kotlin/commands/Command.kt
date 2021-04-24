@@ -5,7 +5,7 @@ import util.FileParser
 
 interface Command {
     var addressBook: AddressBook
-    var args: Array<String>
+    var args: Map<String,List<String>>
 
     fun execute() : String
 
@@ -20,7 +20,16 @@ interface Command {
     }
 
     fun withArgs(args: Array<String>): Command {
-        this.args = args
+        this.args = args.fold(
+            Pair(emptyMap<String, List<String>>(), "")) {
+                (map, lastKey), elem ->
+            if (elem.startsWith("-"))  {
+                Pair(map + (elem to emptyList()), elem)
+            }
+            else {
+                Pair(map + (lastKey to map.getOrDefault(lastKey, emptyList()) + elem), lastKey)
+            }
+        }.first
         return this
     }
 }

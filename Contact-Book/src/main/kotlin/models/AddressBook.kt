@@ -29,7 +29,7 @@ data class AddressBook (val contactList: MutableList<Contact> = mutableListOf())
     fun findContact(name: String): Contact {
         if(name.contains(" ")){
             val names = name.split(" ")
-            return contactList.find { c -> (c.firstName == names[0] || c.lastName == names[1]) } ?: throw NoSuchElementException("Contact not found")
+            return contactList.find { c -> (c.firstName == names[0] && c.lastName == names[1]) } ?: throw NoSuchElementException("Contact not found")
         }
         return contactList.find { c -> (c.firstName == name || c.lastName == name) } ?: throw NoSuchElementException("Contact not found")
     }
