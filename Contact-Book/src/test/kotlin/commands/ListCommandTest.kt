@@ -2,7 +2,7 @@ package commands
 
 import models.AddressBook
 import models.Contact
-import org.junit.Assert
+import helpers.createAddressBookWithContacts
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -13,7 +13,7 @@ class ListCommandTest {
         val addressBook = AddressBook()
 
         val output = ListCommand().loadAddressBook(addressBook).execute()
-        Assert.assertEquals("Address Book is Empty", output)
+        Assertions.assertEquals("Address Book is Empty", output)
     }
 
     @Test
@@ -26,7 +26,7 @@ class ListCommandTest {
                         "Thor Odinsson\t\tthor@asgard.com\t\t11223344\n" +
                         "Odin Allfather\t\todin@asgard.com\t\t66554433\n"
                 )
-        Assert.assertEquals(desiredOutput, output)
+        Assertions.assertEquals(desiredOutput, output)
     }
 
     @Test
@@ -42,6 +42,6 @@ class ListCommandTest {
                         "Thor Odinsson\t\t\t\t11223344\n"
                 )
 
-        Assert.assertEquals(desiredOutput, output)
+        Assertions.assertEquals(desiredOutput, output)
     }
 }

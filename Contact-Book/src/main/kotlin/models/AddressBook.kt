@@ -41,9 +41,10 @@ data class AddressBook (val contactList: MutableList<Contact> = mutableListOf())
     fun updateContact(contact: Contact) {
         val contactIndex = contactList.indexOfFirst { c -> c.firstName == contact.firstName && c.lastName == contact.lastName }
         if(contactIndex == -1) {
-            throw Exception("Element not found")
+            throw NoSuchElementException("Could not update. Contact not found")
         }
         contactList.removeAt(contactIndex)
         contactList.add(contact)
     }
+
 }

@@ -1,6 +1,8 @@
 package commands
 
+import helpers.createAddressBookWithContacts
 import models.AddressBook
+
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

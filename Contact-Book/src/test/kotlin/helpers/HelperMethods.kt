@@ -1,4 +1,4 @@
-package commands
+package helpers
 
 import models.AddressBook
 import models.Contact

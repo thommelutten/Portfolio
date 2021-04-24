@@ -83,7 +83,7 @@ class AddressBookTest {
     }
 
     @Test
-    fun searchContactsFromAddressBook() {
+    fun searchContactsFromAddressBookTest() {
         val addressBook = AddressBook()
 
         val contacts = createListOfContacts()
@@ -98,7 +98,7 @@ class AddressBookTest {
     }
 
     @Test
-    fun updateContactFromAddressBook() {
+    fun updateContactFromAddressBookTest() {
         val addressBook = AddressBook()
 
         val contacts = createListOfContacts()
@@ -113,7 +113,21 @@ class AddressBookTest {
 
         val contact = addressBook.findContact("Thor")
         Assertions.assertEquals("thor@updated-asgard.com", contact.email)
+    }
 
+    @Test
+    fun updateNonExistingContactFromAdressBookTest() {
+        val addressBook = AddressBook()
+
+        val contacts = createListOfContacts()
+        addressBook.addContacts(contacts)
+        val contact = Contact("Random", "Contact", "random@random.com", "1123456")
+
+        val exception = Assertions.assertThrows(NoSuchElementException::class.java) {
+            addressBook.updateContact(contact)
+        }
+
+        Assertions.assertEquals("Could not update. Contact not found", exception.message)
     }
 
     private fun createListOfContacts(): MutableList<Contact> {
