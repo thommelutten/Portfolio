@@ -4,12 +4,14 @@ import models.AddressBook
 import util.FileParser
 
 interface Command {
+    var addressBookPath: String
     var addressBook: AddressBook
     var args: Map<String,List<String>>
 
     fun execute() : String
 
     fun loadAddressBook(path: String): Command {
+        this.addressBookPath = path
         this.addressBook = FileParser.loadAddressBook(path)
         return this
     }
@@ -31,5 +33,14 @@ interface Command {
             }
         }.first
         return this
+    }
+
+    fun saveAddressBook(): String {
+        return try{
+            FileParser.saveAddressBook(addressBookPath, addressBook)
+            "Change saved"
+        } catch (e: Exception) {
+            "Unable to save change"
+        }
     }
 }

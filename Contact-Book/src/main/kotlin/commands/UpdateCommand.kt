@@ -7,6 +7,7 @@ import java.lang.Exception
 class UpdateCommand() : Command {
     override lateinit var addressBook: AddressBook
     override lateinit var args: Map<String, List<String>>
+    override lateinit var addressBookPath: String
     private lateinit var contact: Contact
 
     override fun execute(): String {
@@ -16,7 +17,7 @@ class UpdateCommand() : Command {
 
 
         args.forEach {
-            when(it.key) {
+            when (it.key) {
                 "" -> {
                     try {
                         contact = addressBook.findContact("${it.value[1]} ${it.value[2]}")
@@ -56,7 +57,6 @@ class UpdateCommand() : Command {
             }
             addressBook.updateContact(contact)
         }
-
         return "Updated Contact"
     }
 }

@@ -25,6 +25,19 @@ class FileParser {
             }
             return AddressBook()
         }
+
+        fun saveAddressBook(path: String, addressBook: AddressBook): String {
+            return try {
+                val moshi: Moshi = Moshi.Builder()
+                    .build()
+                val adapter: JsonAdapter<AddressBook> = moshi.adapter(AddressBook::class.java).lenient()
+                val jsonString = adapter.toJson(addressBook)
+                File(path).writeText(jsonString)
+                "Address book saved"
+            } catch (e: Exception) {
+                "Error happened"
+            }
+        }
     }
 
 }

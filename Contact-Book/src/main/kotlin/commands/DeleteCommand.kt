@@ -1,10 +1,12 @@
 package commands
 
 import models.AddressBook
+import java.lang.Exception
 
 class DeleteCommand() : Command {
     override lateinit var addressBook: AddressBook
     override lateinit var args: Map<String,List<String>>
+    override lateinit var addressBookPath: String
 
 
     override fun execute(): String {

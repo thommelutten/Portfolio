@@ -6,7 +6,10 @@ fun main(args: Array<String>) {
     try {
         val command = ParseCommand.parse(args)
         val output = command.loadAddressBook("addressBook.json").withArgs(args).execute()
-        println(output)
+
+        println("\u001B[31m$output\u001B[0m")
+        val saveOutput = command.saveAddressBook()
+        println(saveOutput)
 
     } catch (e: Exception) {
         println(e.message)
