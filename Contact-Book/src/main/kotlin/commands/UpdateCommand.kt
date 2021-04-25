@@ -17,7 +17,7 @@ class UpdateCommand() : Command {
 
 
         args.forEach {
-            when (it.key) {
+            when (it.key.toLowerCase()) {
                 "" -> {
                     try {
                         contact = addressBook.findContact("${it.value[1]} ${it.value[2]}")
@@ -25,7 +25,7 @@ class UpdateCommand() : Command {
                         return "Unable to update. No such contact found"
                     }
                 }
-                "-FirstName" -> {
+                "-firstname" -> {
                     try {
                         contact.firstName = it.value[0]
                     } catch (e: Exception) {
@@ -33,21 +33,21 @@ class UpdateCommand() : Command {
                     }
 
                 }
-                "-LastName" -> {
+                "-lastname" -> {
                     try {
                         contact.lastName = it.value[0]
                     } catch (e: Exception) {
                         return "Unable to update. Invalid lastname"
                     }
                 }
-                "-Email" -> {
+                "-email" -> {
                     try {
                         contact.email = it.value[0]
                     } catch (e: Exception) {
                         return "Unable to update. Invalid email"
                     }
                 }
-                "-Phone" -> {
+                "-phone" -> {
                     try {
                         contact.phone = it.value[0]
                     } catch (e: Exception) {

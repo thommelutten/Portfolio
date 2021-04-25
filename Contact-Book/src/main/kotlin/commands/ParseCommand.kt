@@ -10,24 +10,27 @@ class ParseCommand {
             }
 
             val command = try{
-                CommandTypes.valueOf(args[0])
+                CommandTypes.valueOf(args[0].toUpperCase())
             } catch (e: Exception) {
-                CommandTypes.Unknown
+                CommandTypes.UNKNOWN
             }
 
 
             return when (command.name) {
-                "List" -> {
+                "LIST" -> {
                     ListCommand()
                 }
-                "Add" -> {
+                "ADD" -> {
                     AddCommand()
                 }
-                "Search" -> {
+                "SEARCH" -> {
                     SearchCommand()
                 }
-                "Delete" -> {
+                "DELETE" -> {
                     DeleteCommand()
+                }
+                "UPDATE" -> {
+                    UpdateCommand()
                 }
                 else -> throw Exception("Unknown Command")
             }
@@ -36,5 +39,5 @@ class ParseCommand {
 }
 
 enum class CommandTypes() {
-    List, Add, Search, Delete, Unknown
+    LIST, ADD, SEARCH, DELETE, UPDATE, UNKNOWN
 }

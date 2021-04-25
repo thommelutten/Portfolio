@@ -4,10 +4,11 @@ import util.FileParser
 
 fun main(args: Array<String>) {
     try {
-        val command = ParseCommand.parse(args)
-        val output = command.loadAddressBook("addressBook.json").withArgs(args).execute()
+        var command = ParseCommand.parse(args)
+        command.loadAddressBook("addressBook.json")
+        val output = command.withArgs(args).execute()
 
-        println("\u001B[31m$output\u001B[0m")
+        println("\u001B[31m $output \u001B[0m")
         val saveOutput = command.saveAddressBook()
         println(saveOutput)
 
